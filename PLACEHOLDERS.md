@@ -28,18 +28,30 @@ so the Instagram URL may already be right — worth checking rather than assumin
 The email is deliberately `@example.com` so no lead form can quietly mail a stranger.
 Two forms post to `formsubmit.co/ajax/<email>` — swap the address before testing them.
 
-## 2. Reviews (important)
+## 2. Reviews — DONE
 
-The `#reviews` carousel still holds **Glass Mobile Detailing's real Google reviews**,
-with "Jackson" swapped to "Tyler". They are not about Tyler's business. Replace:
+The `#reviews` carousel now holds **Tyler's 45 real Google reviews** (owner replies
+deliberately not shown), and every "read our reviews" button across the site points at
+`https://share.google/WyiCVYDfeW9cFIlP5`.
 
-- every `.grev-card` (name, initials, month, text)
-- `Based on **59 reviews**` — the count in two places
-- the Google reviews link, currently a search URL placeholder:
-  `https://www.google.com/search?q=Tyler%27s+Auto+Care+reviews`
+Two things to sanity-check:
 
-Same goes for the hero stats: **1000+ Cars Detailed**, **5.0★ Google Rating**,
-**100% Satisfaction**, and the "5-Star Google Rated" trust strip.
+- **The count says "Based on 46 reviews."** That is 45 reviews with text plus one
+  rating-only entry, counted from the list that was pasted in. If the Google profile
+  shows a different total, change it in two places (`.reviews-count` and `.qb-hr-count`).
+- **Four reviews were truncated by Google's "… More"** — Terese Fairfield, Ray Morris,
+  Anna Otto, Natasha Caudle. Those are cut at the last complete sentence rather than
+  guessed at. Paste the full text in if you want them whole.
+
+Still unverified, and carried over from the template: the hero stats
+**1000+ Cars Detailed** and **100% Satisfaction**, and the "Same-Day Booking Available"
+trust-strip claim. The 5.0★ rating is consistent with the reviews.
+
+**Service area — worth asking Tyler.** Several of his own Google replies mention
+**Bloomington** ("here in Bloomington", "your car detailing in Bloomington"). The footer
+still says `Your City, ST` and lists Phoenix / Tempe / Mesa / Gilbert / Chandler / East
+Valley, which are the template's Arizona cities. Confirm the city and state (Bloomington
+IN vs IL) before swapping those in — I did not want to guess the state.
 
 ## 3. Online booking
 
