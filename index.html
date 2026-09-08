@@ -164,9 +164,12 @@
       .nav-links a:nth-child(n+3) { display: none; }
     }
     @media (max-width: 1000px) {
-      /* Below this the phone pill + CTA leave no honest room for links;
-         the hamburger menu carries them from 768px down. */
+      /* Below this the phone pill + CTA leave no honest room for links, so
+         the hamburger has to appear here too — not at 768px — or there is
+         no way to reach the nav between those widths. */
       .nav-links a { display: none; }
+      /* .hamburger is turned on in the override block at the end of the file —
+         the base `.hamburger { display: none }` below would win from here. */
     }
     .nav-right { display: flex; align-items: center; gap: 16px; }
 
@@ -196,9 +199,10 @@
     }
     .hamburger span {
       display: block;
-      width: 24px;
-      height: 2px;
-      background: var(--black);
+      width: 26px;
+      height: 3px;
+      /* Was var(--black) — invisible on the dark nav bar. */
+      background: #ffffff;
       border-radius: 2px;
       transition: all 0.3s;
     }
@@ -4738,9 +4742,9 @@ function closeService() {
   }
 
   .hamburger span {
-    width: 25px;
-    height: 2.5px;
-    background: #1c1c21;
+    width: 26px;
+    height: 3px;
+    background: #ffffff;
     border-radius: 2px;
     transition: all 0.3s;
   }
@@ -5216,6 +5220,12 @@ function closeService() {
   .glass-mc-check.yes { background: rgba(212,175,55,0.16); color: #d4af37; }
   .qb-mc-payonly { color: #22c55e; }
 
+  /* Wherever the link row is hidden, the hamburger has to take over — the
+     links drop out at 1000px but the template only revealed it at 768px. */
+  @media (max-width: 1000px) {
+    .hamburger { display: flex; }
+  }
+
   /* Logo is a round badge on a square file — crop it to the circle */
   .mobile-menu-logo img, .footer-brand-logo img, .qb-header-logo img { border-radius: 50%; }
   /* The nav carries the wide wordmark banner, not the round badge */
@@ -5323,6 +5333,32 @@ function closeService() {
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(remeasure);
 })();
 </script>
+
+<!-- ─── Desktop-only: give the reviews room to breathe and size up ─── -->
+<style>
+  @media (min-width: 901px) {
+    /* Section was flush against the trust strip above it. */
+    #reviews { padding: 4rem 0 4.5rem !important; }
+
+    .reviews-google-wrap { grid-template-columns: 250px 1fr; gap: 3rem; }
+    .reviews-excellent { padding: 2.25rem 1.75rem; border-radius: 18px; }
+    .reviews-excellent-label { font-size: 1.15rem; }
+    .reviews-stars-row { font-size: 1.75rem; }
+    .reviews-count { font-size: 0.92rem; }
+    .reviews-google-logo { font-size: 1.6rem; }
+    .reviews-cta { font-size: 0.85rem; padding: 0.85rem 1.7rem; }
+
+    /* Card gap stays 1rem — the carousel's step math hardcodes 16px. */
+    .grev-card { padding: 1.7rem; border-radius: 18px; gap: 0.75rem; }
+    .grev-avatar { width: 46px; height: 46px; font-size: 0.9rem; }
+    .grev-name { font-size: 1rem; }
+    .grev-date { font-size: 0.8rem; }
+    .grev-stars { font-size: 1.05rem; }
+    .grev-g { font-size: 1.15rem; }
+    .grev-text { font-size: 0.97rem; line-height: 1.7; }
+    .grev-more { font-size: 0.88rem; }
+  }
+</style>
 
 </body>
 </html>
