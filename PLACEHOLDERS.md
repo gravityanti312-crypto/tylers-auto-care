@@ -7,26 +7,27 @@ are replaced.**
 
 ## 1. Contact details
 
+**Filled in:** phone `(309) 660-2602` (all 8 display spots + every `tel:`/`sms:` link),
+Bloomington & Normal, IL across the footer contact block, the service-area column
+(the template's Phoenix/Tempe/Mesa list is gone), the copyright line, the page title
+and the meta description. TikTok and Facebook links are real.
+
+**Still placeholders:**
+
 | What | Placeholder in the file | Where |
 |---|---|---|
-| Phone (display) | `(555) 123-4567` | nav, hero, footer, sticky bar, quote success, 7 spots |
-| Phone (links) | `tel:5551234567`, `sms:5551234567` | same spots |
 | Email | `tylersautocare@example.com` | footer, gift-card link, form endpoints, `api/*.js` |
-| City / service area | `Your City, ST` | footer contact, footer copyright, meta |
-| Service-area list | Phoenix, **Your City**, Tempe, Mesa, Gilbert, Chandler, East Valley | footer |
 | Instagram | `@tylersautocare` → `instagram.com/tylersautocare/` | Socials section, footer |
 | Website URL in referral SMS | `https://tylersautocare.com` | referral text template |
 
-**Real links already in** (Socials section + footer icon row):
-TikTok `https://www.tiktok.com/@tylersautocare`, Facebook
-`https://www.facebook.com/profile.php?id=61585491647913`. The Facebook URL was
-trimmed to the bare profile id — the `mibextid` / `rdid` / `share_url` params on
-the shared link are just share-tracking and are not needed. Instagram is still
-the placeholder handle above; note TikTok confirms the handle `tylersautocare`,
-so the Instagram URL may already be right — worth checking rather than assuming.
+> **The email matters more than it looks.** The quote form and the referral form both
+> POST to `formsubmit.co/ajax/<that address>`. Until it is Tyler's real inbox, **every
+> lead submitted through the site is lost** — the form still shows its success screen.
+> Fix that before sending anyone to the site. The `@example.com` domain is deliberate:
+> it can never deliver to a real stranger by accident.
 
-The email is deliberately `@example.com` so no lead form can quietly mail a stranger.
-Two forms post to `formsubmit.co/ajax/<email>` — swap the address before testing them.
+TikTok confirms the handle `tylersautocare`, so the Instagram URL may already be right —
+worth opening once to check rather than assuming.
 
 ## 2. Reviews — DONE
 
