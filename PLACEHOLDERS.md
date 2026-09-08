@@ -17,9 +17,13 @@ are replaced.**
 | Instagram | `@tylersautocare` → `instagram.com/tylersautocare/` | Socials section, footer |
 | Website URL in referral SMS | `https://tylersautocare.com` | referral text template |
 
-**Real links already in:** TikTok `https://tr.ee/_xy6T24c07` and Facebook
-`https://tr.ee/JuC1ob_MfJ` (Socials section + footer icon row). Instagram is still
-the placeholder handle above.
+**Real links already in** (Socials section + footer icon row):
+TikTok `https://www.tiktok.com/@tylersautocare`, Facebook
+`https://www.facebook.com/profile.php?id=61585491647913`. The Facebook URL was
+trimmed to the bare profile id — the `mibextid` / `rdid` / `share_url` params on
+the shared link are just share-tracking and are not needed. Instagram is still
+the placeholder handle above; note TikTok confirms the handle `tylersautocare`,
+so the Instagram URL may already be right — worth checking rather than assuming.
 
 The email is deliberately `@example.com` so no lead form can quietly mail a stranger.
 Two forms post to `formsubmit.co/ajax/<email>` — swap the address before testing them.
