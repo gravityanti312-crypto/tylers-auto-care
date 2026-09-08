@@ -124,9 +124,12 @@
       backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
       border-radius: 16px; padding: 8px 12px 8px 20px;
       border: 1px solid rgba(212,175,55,0.18);
-      box-shadow: 0 8px 32px rgba(212,175,55,0.15); height: 76px;
+      box-shadow: 0 8px 32px rgba(212,175,55,0.15); height: 94px;
     }
-    .nav-logo img { height: 46px; width: auto; flex-shrink: 0; }
+    .nav-logo { flex-shrink: 0; display: flex; align-items: center; margin-right: 20px; }
+    /* The global img{max-width:100%} reset squashes the banner horizontally
+       once the nav runs out of room — it has to keep its aspect ratio. */
+    .nav-logo img { height: 60px; width: auto; max-width: none; flex-shrink: 0; }
     .btn-call-nav {
       display: inline-flex; align-items: center; gap: 7px;
       background: linear-gradient(135deg, var(--teal-dark), var(--teal));
@@ -137,23 +140,33 @@
     }
     .btn-call-nav:hover { opacity: 0.88; }
     .nav-links {
-      display: flex; align-items: center; gap: 18px;
-      flex: 1; justify-content: center;
+      display: flex; align-items: center; gap: 14px;
+      flex: 1; justify-content: center; min-width: 0;
+      padding: 0 10px;
     }
     .nav-links a {
       font-size: 13px; font-weight: 600; color: #c9c6be;
       transition: color 0.2s; white-space: nowrap;
     }
     .nav-links a:hover { color: var(--teal); }
-    @media (max-width: 1180px) {
-      .nav-links { gap: 14px; }
+    /* The wide wordmark logo eats ~60px more than the round badge did, and
+       .nav-inner is capped at 1280px, so no width ever fits all six links —
+       "Refer & Earn $25" lives in the mobile menu and its own section. */
+    .nav-links a:nth-child(n+6) { display: none; }
+    @media (max-width: 1400px) {
+      .nav-links { gap: 12px; }
       .nav-links a { font-size: 12.5px; }
     }
-    @media (max-width: 1080px) {
-      .nav-links a:nth-child(n+6) { display: none; }
-    }
-    @media (max-width: 940px) {
+    @media (max-width: 1240px) {
       .nav-links a:nth-child(n+4) { display: none; }
+    }
+    @media (max-width: 1100px) {
+      .nav-links a:nth-child(n+3) { display: none; }
+    }
+    @media (max-width: 1000px) {
+      /* Below this the phone pill + CTA leave no honest room for links;
+         the hamburger menu carries them from 768px down. */
+      .nav-links a { display: none; }
     }
     .nav-right { display: flex; align-items: center; gap: 16px; }
 
@@ -4714,7 +4727,7 @@ function closeService() {
     justify-content: space-between;
   }
 
-  .nav-logo img { height: 48px; }
+  .nav-logo img { height: 60px; }
 
   .nav-right { margin-left: auto; }
 
@@ -5050,8 +5063,8 @@ function closeService() {
 /* Very small phones */
 @media (max-width: 390px) {
   .hero-h1 { font-size: 2.1rem; }
-  .nav-inner { height: 58px; }
-  .nav-logo img { height: 34px; }
+  .nav-inner { height: 70px; }
+  .nav-logo img { height: 48px; }
   .qb-cards { grid-template-columns: 1fr !important; }
   .svc-card-img { width: 66px; height: 66px; }
 }
