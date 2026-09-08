@@ -126,7 +126,7 @@
       border: 1px solid rgba(212,175,55,0.18);
       box-shadow: 0 8px 32px rgba(212,175,55,0.15); height: 76px;
     }
-    .nav-logo img { height: 58px; width: auto; flex-shrink: 0; }
+    .nav-logo img { height: 46px; width: auto; flex-shrink: 0; }
     .btn-call-nav {
       display: inline-flex; align-items: center; gap: 7px;
       background: linear-gradient(135deg, var(--teal-dark), var(--teal));
@@ -2080,7 +2080,7 @@
 <nav id="nav">
   <div class="nav-inner">
     <a href="#hero" class="nav-logo">
-      <img src="tylers-logo.jpg" alt="Tyler's Auto Care" />
+      <img src="tylers-logo-wide.png" alt="Tyler's Auto Care" />
     </a>
     <div class="nav-links">
       <a href="#services">Services</a>
@@ -4715,7 +4715,7 @@ function closeService() {
     justify-content: space-between;
   }
 
-  .nav-logo img { height: 74px; }
+  .nav-logo img { height: 48px; }
 
   .nav-right { margin-left: auto; }
 
@@ -5052,7 +5052,7 @@ function closeService() {
 @media (max-width: 390px) {
   .hero-h1 { font-size: 2.1rem; }
   .nav-inner { height: 58px; }
-  .nav-logo img { height: 40px; }
+  .nav-logo img { height: 34px; }
   .qb-cards { grid-template-columns: 1fr !important; }
   .svc-card-img { width: 66px; height: 66px; }
 }
@@ -5205,7 +5205,9 @@ function closeService() {
   .qb-mc-payonly { color: #22c55e; }
 
   /* Logo is a round badge on a square file — crop it to the circle */
-  .nav-logo img, .mobile-menu-logo img, .footer-brand-logo img, .qb-header-logo img { border-radius: 50%; }
+  .mobile-menu-logo img, .footer-brand-logo img, .qb-header-logo img { border-radius: 50%; }
+  /* The nav carries the wide wordmark banner, not the round badge */
+  .nav-logo img { border-radius: 8px; }
 
   /* "Most popular" ribbon on the featured plan */
   .glass-mc.featured::before, .glass-mc .glass-mc-ribbon { color: #0a0a0b; }
