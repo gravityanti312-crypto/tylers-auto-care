@@ -14,8 +14,12 @@ are replaced.**
 | Email | `tylersautocare@example.com` | footer, gift-card link, form endpoints, `api/*.js` |
 | City / service area | `Your City, ST` | footer contact, footer copyright, meta |
 | Service-area list | Phoenix, **Your City**, Tempe, Mesa, Gilbert, Chandler, East Valley | footer |
-| Instagram | `@tylersautocare` → `instagram.com/tylersautocare/` | IG section, footer, nav |
+| Instagram | `@tylersautocare` → `instagram.com/tylersautocare/` | Socials section, footer |
 | Website URL in referral SMS | `https://tylersautocare.com` | referral text template |
+
+**Real links already in:** TikTok `https://tr.ee/_xy6T24c07` and Facebook
+`https://tr.ee/JuC1ob_MfJ` (Socials section + footer icon row). Instagram is still
+the placeholder handle above.
 
 The email is deliberately `@example.com` so no lead form can quietly mail a stranger.
 Two forms post to `formsubmit.co/ajax/<email>` — swap the address before testing them.
