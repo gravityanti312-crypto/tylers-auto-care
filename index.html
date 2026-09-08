@@ -2190,6 +2190,9 @@
 <section id="reviews">
   <div class="container">
     <div class="reviews-google-wrap">
+      <!-- The wrapper lets the badge be taken out of flow on desktop so the
+           review cards, not the badge, decide the row height. -->
+      <div class="reviews-badge-col">
       <a href="https://share.google/WyiCVYDfeW9cFIlP5" target="_blank" rel="noopener" class="reviews-excellent">
        <div class="reviews-excellent-label">EXCELLENT</div>
         <div class="reviews-stars-row">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
@@ -2197,6 +2200,7 @@
         <div class="reviews-google-logo"><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span></div>
         <div class="reviews-cta">Read Our Reviews &rarr;</div>
       </a>
+      </div>
       <div class="reviews-cards-viewport">
       <div class="reviews-cards-track" id="reviews-track">
         <div class="grev-card">
@@ -5357,6 +5361,19 @@ function closeService() {
     .grev-g { font-size: 1.15rem; }
     .grev-text { font-size: 0.97rem; line-height: 1.7; }
     .grev-more { font-size: 0.88rem; }
+
+    /* Match the EXCELLENT badge to the height of the review cards beside it.
+       Absolute positioning keeps the badge out of the grid's row-height
+       calculation, so the cards column sets the height and the badge fills it
+       exactly. Desktop only — on mobile the badge stacks and sizes normally. */
+    .reviews-google-wrap { align-items: stretch; }
+    .reviews-badge-col { position: relative; }
+    .reviews-badge-col > a.reviews-excellent {
+      /* 6px bottom inset mirrors .reviews-cards-viewport's padding-bottom, so
+         the badge lines up with the card bottoms, not the scroll container. */
+      position: absolute; inset: 0 0 6px 0;
+      display: flex; flex-direction: column; justify-content: center;
+    }
   }
 </style>
 
