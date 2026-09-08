@@ -708,7 +708,6 @@
     .grev-stars { color: #f59e0b; font-size: 0.9rem; display: flex; align-items: center; gap: 4px; }
     .grev-check { color: #4285F4; font-size: 0.7rem; }
     .grev-text { font-size: 0.83rem; color: #c9c6be; line-height: 1.6; flex: 1; }
-    .grev-more { display:none; }
     @media (max-width: 900px) {
       .reviews-google-wrap { grid-template-columns: 1fr; }
       .reviews-cards-grid { grid-template-columns: 1fr 1fr; }
@@ -5212,6 +5211,105 @@ function closeService() {
   /* "Most popular" ribbon on the featured plan */
   .glass-mc.featured::before, .glass-mc .glass-mc-ribbon { color: #0a0a0b; }
 </style>
+
+<!-- ─── Review cards: clamp long reviews to 4 lines with a per-card Read more ─── -->
+<style>
+  /* Clamp only cards JS has measured as overflowing, so with JS off the full
+     review still shows rather than being silently cut. */
+  .grev-card.grev-clamped:not(.grev-open) .grev-text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+    /* .grev-text is flex:1, and cards stretch to the tallest in the row —
+       that stretch overrides the clamp height and leaks extra lines. Pin the
+       clamped box to its own 4-line height instead. */
+    flex: 0 0 auto;
+  }
+  .grev-more {
+    align-self: flex-start;
+    background: none; border: none; padding: 0;
+    font: inherit; font-size: 0.8rem; font-weight: 700;
+    color: #d4af37; cursor: pointer;
+    text-decoration: underline; text-underline-offset: 3px;
+    transition: color 0.15s;
+  }
+  .grev-more:hover { color: #f0d67a; }
+</style>
+<script>
+(function () {
+  var LINES = 4;
+
+  function measure(card) {
+    var text = card.querySelector('.grev-text');
+    var btn  = card.querySelector('.grev-more');
+    if (!text) return;
+
+    // Never re-collapse a card the visitor opened.
+    if (card.classList.contains('grev-open')) return;
+
+    var lh = parseFloat(getComputedStyle(text).lineHeight);
+    if (!lh) return;
+
+    // Cards stretch to the tallest in the row and .grev-text is flex:1, so the
+    // box height says nothing about how long the review actually is. Unclamp
+    // and pin it to its content height to measure, then restore.
+    card.classList.remove('grev-clamped');
+    var prevFlex = text.style.flex;
+    text.style.flex = '0 0 auto';
+    var natural = text.scrollHeight;
+    text.style.flex = prevFlex;
+
+    var overflows = natural > lh * LINES + 1;
+    card.classList.toggle('grev-clamped', overflows);
+    if (btn) btn.hidden = !overflows;
+  }
+
+  function setup() {
+    var cards = document.querySelectorAll('.grev-card');
+    Array.prototype.forEach.call(cards, function (card) {
+      var text = card.querySelector('.grev-text');
+      if (!text || card.querySelector('.grev-more')) return;
+
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'grev-more';
+      btn.textContent = 'Read more';
+      btn.hidden = true;
+      btn.setAttribute('aria-expanded', 'false');
+      btn.addEventListener('click', function (e) {
+        // The carousel listens for pointerdown/click on the viewport — keep
+        // this toggle from bubbling into it.
+        e.preventDefault();
+        e.stopPropagation();
+        var open = card.classList.toggle('grev-open');
+        btn.textContent = open ? 'Show less' : 'Read more';
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      text.insertAdjacentElement('afterend', btn);
+      measure(card);
+    });
+  }
+
+  function remeasure() {
+    Array.prototype.forEach.call(document.querySelectorAll('.grev-card'), measure);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setup);
+  } else {
+    setup();
+  }
+  // Card width changes with the viewport, so the line count does too.
+  var t;
+  window.addEventListener('resize', function () {
+    clearTimeout(t);
+    t = setTimeout(remeasure, 150);
+  });
+  // Web fonts land after first paint and change the wrapping.
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(remeasure);
+})();
+</script>
 
 </body>
 </html>
