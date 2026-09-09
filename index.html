@@ -1847,10 +1847,13 @@
 
       body { padding-bottom: 72px; }
 
-      /* Mobile hero: photo shows Tyler up top, text anchored to the bottom over a
-         scrim — so the headline never lands on his face regardless of screen height. */
+      /* Mobile hero: text anchored to the bottom over a scrim. The 68% 6% crop
+         was aimed at the old photo's subject standing off to the right; the car
+         shot is centred in frame, so the portrait crop is centred too. At
+         cover on a portrait viewport the image height fits exactly, so only
+         the X value actually changes anything here. */
       #hero { align-items: flex-end; }
-      .hero-bg { background-position: 68% 6%; }
+      .hero-bg { background-position: 50% 50%; }
       .hero-overlay {
         background: linear-gradient(to bottom,
           rgba(0,0,0,0.45) 0%,
